@@ -1,0 +1,30 @@
+{
+  "name": "web-dev-template",
+  "version": "0.0.1",
+  "description": "A template for creating website with Wordpress or Slim framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adderpositive/web-dev-template.git"
+  },
+  "keywords": [
+    "web",
+    "frontend",
+    "startup"
+  ],
+  "author": "Martin Homola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adderpositive/web-dev-template/issues"
+  },
+  "homepage": "https://github.com/adderpositive/web-dev-template#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  },
+  "dependencies": {
+    "gulp-twig": "^1.2.0"
+  }
+}
