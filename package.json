@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/adderpositive/web-dev-template#readme",
   "devDependencies": {
-    "gulp": "^4.0.0"
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-pretty-html": "^2.0.9"
   },
   "dependencies": {
     "del": "^3.0.0",

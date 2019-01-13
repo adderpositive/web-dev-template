@@ -1,10 +1,14 @@
-const { series, parallel, src, dest } = require('gulp');
+const { series, parallel, src, dest, watch } = require('gulp');
 const del = require('del');
 const twig = require('gulp-twig');
 
+const browserSync = require('browser-sync').create();
+const prettyHtml = require("gulp-pretty-html");
+
 const dirs = {
     src: './src',
-    dest: './dev'
+    dest: './dev',
+    prod: './prod'
 };
 
 function removeFiles() {
@@ -16,6 +20,7 @@ function removeFiles() {
 function templates() {
     return src(`${ dirs.src }/*.twig`)
         .pipe( twig({
+            // TODO: should be main settings - title, robots, metas, etc.
             data: {
                 title: 'Gulp and Twig',
                 benefits: [
@@ -25,7 +30,23 @@ function templates() {
                 ]
             }
         }))
+        // TODO: maybe for production reason
+        .pipe( prettyHtml({
+            wrap_attributes: 'force-expand-multiline',
+            preserve_newlines: false // remove redundant lines
+        }) )
         .pipe( dest( dirs.dest ) );
-    }
+}
 
-exports.default = series( removeFiles, templates);
+function serve() {
+    browserSync.init({
+        server: {
+            baseDir: dirs.dest
+        }
+    });
+
+    watch( `${ dirs.src }/**/*.twig`, templates )
+        .on( 'change', browserSync.reload );
+}
+
+exports.default = series( removeFiles, templates, serve );
