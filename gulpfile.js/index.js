@@ -12,7 +12,7 @@ const dirs = {
 };
 
 function removeFiles() {
-    return del( dirs.dest).then( paths => {
+    return del(dirs.dest).then( paths => {
         console.log('Deleted files and folders:\n', paths.join('\n'));
     });
 }
@@ -31,11 +31,11 @@ function templates() {
             }
         }))
         // TODO: maybe for production reason
-        .pipe( prettyHtml({
+        .pipe(prettyHtml({
             wrap_attributes: 'force-expand-multiline',
             preserve_newlines: false // remove redundant lines
         }) )
-        .pipe( dest( dirs.dest ) );
+        .pipe(dest(dirs.dest));
 }
 
 function serve() {
@@ -49,4 +49,4 @@ function serve() {
         .on( 'change', browserSync.reload );
 }
 
-exports.default = series( removeFiles, templates, serve );
+exports.default = series(removeFiles, templates, serve);
