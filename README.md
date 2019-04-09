@@ -1,9 +1,11 @@
 Dev stack for web development
 
 TODO:
-- default structure
-- SASS
+- SASS - for HTTP 1.0 (concate)
 - JS
+    + http 1.0 - concate
+    + http 2.0 - separate
+- minifying
 - rendering development version for view
 - pixel perfection
 

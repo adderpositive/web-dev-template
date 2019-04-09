@@ -24,9 +24,12 @@
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
-    "gulp-pretty-html": "^2.0.9"
+    "gulp-pretty-html": "^2.0.9",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.11.0"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "del": "^3.0.0",
     "gulp-twig": "^1.2.0"
   }

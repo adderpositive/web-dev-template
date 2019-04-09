@@ -6,9 +6,11 @@
     <meta name="description" content="A demo of how to use gulp-twig"/>
     <meta name="author" content="Simon de Turck"/>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
     <title>{{ title }}</title>
 
+{% for file in cssFiles %}
+    <link rel="stylesheet" href="{{ file }}" />
+{% endfor %}
 </head>
 <body>
 <section>
