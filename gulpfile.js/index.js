@@ -78,6 +78,7 @@ function compileSass() {
 function serve() {
     browserSync.init({
         server: {
+            port: 8000,
             baseDir: dirs.dest
         },
         open: false
