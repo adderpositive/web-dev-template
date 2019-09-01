@@ -1,10 +1,8 @@
 # Dev stack for web development
-
+- standart JS, ES6
 - minifying
 - general project settings
 - FTP deploying basic deplyoing
-- standart JS, ES6
-- production - Slim framework, Wordpress (some light version)
 
 ## Externals
 ### Pixel perfect

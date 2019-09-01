@@ -3,6 +3,12 @@ const del = require('del');
 const twig = require('gulp-twig');
 const sass = require('gulp-sass');
 const fs = require('fs');
+const rollup = require('gulp-better-rollup');
+const babel = require('rollup-plugin-babel');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+const sourcemaps = require('gulp-sourcemaps');
+const concat = require('gulp-concat');
 
 sass.compiler = require('node-sass');
 
@@ -23,7 +29,9 @@ function removeFiles() {
 
 function templates() {
     let cssFiles = [];
-    let jsFiles = [];
+    let jsFiles = [
+        'script.js'
+    ];
 
     getFiles(`${ dirs.dest }/css`, cssFiles);
 
@@ -49,9 +57,9 @@ function templates() {
 
     return src(`${ dirs.src }/*.twig`)
         .pipe( twig({
-            // TODO: should be main settings - title, robots, metas, etc.
             data: {
                 title: 'Gulp and Twig',
+                version: '0.0.1',
                 benefits: [
                     'Fast',
                     'Flexible',
@@ -61,7 +69,6 @@ function templates() {
                 jsFiles
             }
         }))
-        // TODO: maybe for production reason
         .pipe(prettyHtml({
             wrap_attributes: 'force-expand-multiline',
             preserve_newlines: false // remove redundant lines
@@ -73,6 +80,15 @@ function compileSass() {
     return src(`${ dirs.src }/sass/**/*.scss`)
         .pipe(sass().on('error', sass.logError))
         .pipe(dest(`${ dirs.dest }/css`));
+}
+
+function compileScript() {
+    return src(`${ dirs.src }/js/**/*.js`)
+            .pipe(sourcemaps.init())
+            .pipe(rollup({ plugins: [babel(), resolve(), commonjs()] }, 'umd'))
+            .pipe(concat('script.js'))
+            .pipe(sourcemaps.write('.'))
+            .pipe(dest(`${ dirs.dest }/js`));
 }
 
 function serve() {
@@ -89,6 +105,9 @@ function serve() {
 
     watch(`${ dirs.src }/sass/**/*.scss`, compileSass)
         .on('change', browserSync.reload)
+    
+    watch(`${ dirs.src }/js/**/*.js`, compileScript)
+        .on('change', browserSync.reload)
 }
 
-exports.default = series(removeFiles, compileSass, templates, serve);
+exports.default = series(removeFiles, compileSass, compileScript, templates, serve);

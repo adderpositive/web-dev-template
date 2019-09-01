@@ -9,12 +9,13 @@
     <title>{{ title }}</title>
 
 {% for file in cssFiles %}
-    <link rel="stylesheet" href="{{ file }}" />
+    <link rel="stylesheet" href="{{ file }}?v={{ version }}" />
 {% endfor %}
 </head>
 <body>
 <section>
     {% block page %}{% endblock %}
 </section>
+<script src="./js/{{ jsFiles[0] }}?v={{ version }}"></script>
 </body>
 </html>
