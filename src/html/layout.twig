@@ -2,20 +2,40 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="description" content="Default template"/>
-    <meta name="author" content="Martin Homola"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{{ title }}</title>
 
-{% for file in cssFiles %}
-    <link rel="stylesheet" href="{{ file }}?v={{ version }}" />
-{% endfor %}
+    <meta name="description" content="Default template"/>
+    <meta name="author" content="Martin Homola"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./other/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="./other/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="./other/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./other/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="./other/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="./other/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="./other/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="./other/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./other/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192"  href="./other/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./other/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="./other/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./other/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./other/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="./other/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    {% for file in cssFiles %}
+        <link rel="stylesheet" href="{{ file }}?v={{ version }}" />
+    {% endfor %}
 </head>
 <body>
-<section>
-    {% block page %}{% endblock %}
-</section>
-<script src="./js/{{ jsFiles[0] }}?v={{ version }}"></script>
+    <section>
+        {% block page %}{% endblock %}
+    </section>
+    <script src="./js/{{ jsFiles[0] }}?v={{ version }}"></script>
 </body>
 </html>

@@ -128,6 +128,11 @@ function processIcons() {
       .pipe(dest(`${ dirs.dest }/img`));
 }
 
+function processOtherAssets() {
+    return src(`${ dirs.src }/other/**`)
+      .pipe(dest(`${ dirs.dest }/other`));
+}
+
 function serve() {
     browserSync.init({
         server: {
@@ -153,6 +158,7 @@ exports.default = series(
     compileScript,
     processImages,
     processIcons,
+    processOtherAssets,
     templates,
     serve,
 );
