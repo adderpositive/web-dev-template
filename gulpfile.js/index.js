@@ -11,6 +11,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
+const svgstore = require('gulp-svgstore');
 
 sass.compiler = require('node-sass');
 
@@ -121,6 +122,12 @@ function processImages() {
         .pipe(dest((`${ dirs.dest }/img`)));
 }
 
+function processIcons() {
+    return src(`${ dirs.src }/icons/*`)
+      .pipe(svgstore())
+      .pipe(dest(`${ dirs.dest }/img`));
+}
+
 function serve() {
     browserSync.init({
         server: {
@@ -140,4 +147,12 @@ function serve() {
         .on('change', browserSync.reload)
 }
 
-exports.default = series(removeFiles, compileSass, compileScript, processImages, templates, serve);
+exports.default = series(
+    removeFiles,
+    compileSass,
+    compileScript,
+    processImages,
+    processIcons,
+    templates,
+    serve,
+);

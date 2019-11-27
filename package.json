@@ -48,7 +48,9 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "del": "^5.1.0",
+    "gulp-svgstore": "^7.0.1",
     "gulp-twig": "^1.2.0",
-    "imagemin-jpeg-recompress": "^6.0.0"
+    "imagemin-jpeg-recompress": "^6.0.0",
+    "svg4everybody": "^2.1.9"
   }
 }
