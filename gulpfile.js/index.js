@@ -12,6 +12,7 @@ const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const svgstore = require('gulp-svgstore');
+const eslint = require('gulp-eslint');
 
 sass.compiler = require('node-sass');
 
@@ -87,11 +88,13 @@ function compileSass() {
 
 function compileScript() {
     return src(`${ dirs.src }/js/**/*.js`)
-            .pipe(sourcemaps.init())
-            .pipe(rollup({ plugins: [babel(), resolve(), commonjs()] }, 'umd'))
-            .pipe(concat('script.js'))
-            .pipe(sourcemaps.write('.'))
-            .pipe(dest(`${ dirs.dest }/js`));
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(sourcemaps.init())
+        .pipe(rollup({ plugins: [babel(), resolve(), commonjs()] }, 'umd'))
+        .pipe(concat('script.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest(`${ dirs.dest }/js`));
 }
 
 function processImages() {
@@ -124,13 +127,13 @@ function processImages() {
 
 function processIcons() {
     return src(`${ dirs.src }/icons/*`)
-      .pipe(svgstore())
-      .pipe(dest(`${ dirs.dest }/img`));
+        .pipe(svgstore())
+        .pipe(dest(`${ dirs.dest }/img`));
 }
 
 function processOtherAssets() {
     return src(`${ dirs.src }/other/**`)
-      .pipe(dest(`${ dirs.dest }/other`));
+        .pipe(dest(`${ dirs.dest }/other`));
 }
 
 function serve() {
