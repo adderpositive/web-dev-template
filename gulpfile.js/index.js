@@ -9,6 +9,8 @@ const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
+const imagemin = require('gulp-imagemin');
+const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 sass.compiler = require('node-sass');
 
@@ -91,6 +93,34 @@ function compileScript() {
             .pipe(dest(`${ dirs.dest }/js`));
 }
 
+function processImages() {
+    return src(`${ dirs.src }/img/*`)
+        .pipe(imagemin([
+            imagemin.gifsicle({
+                interlaced: true,
+            }),
+            imageminJpegRecompress({
+                quality: 'high',
+                min: 65,
+                max: 85,
+            }),
+            imagemin.optipng({
+                optimizationLevel: 2
+            }),
+            imagemin.svgo({
+                plugins: [
+                    {
+                        removeViewBox: true
+                    },
+                    {
+                        cleanupIDs: false
+                    },
+                ],
+            })
+        ]))
+        .pipe(dest((`${ dirs.dest }/img`)));
+}
+
 function serve() {
     browserSync.init({
         server: {
@@ -105,9 +135,9 @@ function serve() {
 
     watch(`${ dirs.src }/sass/**/*.scss`, compileSass)
         .on('change', browserSync.reload)
-    
+
     watch(`${ dirs.src }/js/**/*.js`, compileScript)
         .on('change', browserSync.reload)
 }
 
-exports.default = series(removeFiles, compileSass, compileScript, templates, serve);
+exports.default = series(removeFiles, compileSass, compileScript, processImages, templates, serve);
