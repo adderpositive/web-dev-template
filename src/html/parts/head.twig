@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+
+    <meta name="robots" content="{{ robots }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="{{ author }}">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ path }}/other/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ path }}/other/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ path }}/other/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ path }}/other/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ path }}/other/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ path }}/other/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ path }}/other/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ path }}/other/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ path }}/other/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ path }}/other/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ path }}/other/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ path }}/other/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ path }}/other/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="{{ path }}/other/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="{{ path }}/other/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ currentPath }}" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:image" content="{{ pageWithPath }}" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="{{ twitter }}" />
+    <meta name="twitter:title" content="{{ title }}" />
+    <meta name="twitter:description" content="{{ description }}" />
+
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "{{ currentPath }}" ,
+        "name": "{{ title }}",
+        "logo": "{{ logoWithPath }}",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "{{ email }}",
+            "contactType": "Support"
+        }
+    }
+    </script>
+
+    {% for file in cssFiles %}
+        {% if file != './css/9.print/print.css' %}
+            <link rel="stylesheet" media="screen" href="{{ path }}{{ file }}?v={{ version }}" />
+        {% else %}
+            <link rel="stylesheet" media="print" href="{{ path }}{{ file }}?v={{ version }}" />
+        {% endif %}
+    {% endfor %}
+</head>
+
+<body>
+

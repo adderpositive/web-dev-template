@@ -52,7 +52,7 @@ function templates() {
             }
 
             if(path && fs.lstatSync(path).isFile()) {
-                files.push(path.replace('./dev', '.'));
+                files.push(path.replace('./dev', ''));
             }
         });
 
@@ -69,6 +69,7 @@ function templates() {
                     'Flexible',
                     'Secure'
                 ],
+                path: '.',
                 cssFiles,
                 jsFiles
             }

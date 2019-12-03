@@ -1,3 +1,44 @@
-html {
+*,
+*::before,
+*::after {
+    background: transparent none !important;
+}
+
+html, body {
+    font-family: Arial, Helvetica, Tahoma, sans-serif;
     background-color: #fff !important;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+figure {
+    margin: 25px 0;
+}
+
+table {
+    width: 100%;
+}
+
+form,
+fieldset,
+aside,
+footer,
+nav,
+iframe,
+.button,
+.popup {
+    display: none;
+}
+
+.logo {
+    //uncomment this line if logo is light colored and will be insible printed
+    //filter: invert(100%);
 }
