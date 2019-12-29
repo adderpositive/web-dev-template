@@ -43,7 +43,7 @@
     </script>
 
     {% for file in cssFiles %}
-        {% if file != './css/9.print/print.css' %}
+        {% if file != '/css/9.print/print.css' %}
             <link rel="stylesheet" media="screen" href="{{ path }}{{ file }}?v={{ version }}" />
         {% else %}
             <link rel="stylesheet" media="print" href="{{ path }}{{ file }}?v={{ version }}" />
