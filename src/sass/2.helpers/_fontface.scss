@@ -1,0 +1,14 @@
+$fonts-dir: '../../other/fonts/';
+
+@mixin fontFace($name, $file, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: $name;
+        font-weight: $weight;
+        font-style: $style;
+        // font-display: swap;
+        src: url('#{$fonts-dir}#{$file}.eot');
+        src: url('#{$fonts-dir}#{$file}.eot?#iefix') format('embedded-opentype'),
+            url('#{$fonts-dir}#{$file}.woff') format('woff'),
+            url('#{$fonts-dir}#{$file}.ttf') format('truetype');
+    }
+}

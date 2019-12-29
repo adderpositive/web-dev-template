@@ -62,7 +62,7 @@ function templates() {
     return src(`${ dirs.src }/*.twig`)
         .pipe( twig({
             data: {
-                title: 'Gulp and Twig',
+                title: 'Project name',
                 version: '0.0.1',
                 benefits: [
                     'Fast',
@@ -99,7 +99,7 @@ function compileScript() {
 }
 
 function processImages() {
-    return src(`${ dirs.src }/img/*`)
+    return src(`${ dirs.src }/img/**/*`)
         .pipe(imagemin([
             imagemin.gifsicle({
                 interlaced: true,
@@ -133,7 +133,7 @@ function processIcons() {
 }
 
 function processOtherAssets() {
-    return src(`${ dirs.src }/other/**`)
+    return src(`${ dirs.src }/other/**/*`)
         .pipe(dest(`${ dirs.dest }/other`));
 }
 
@@ -153,6 +153,15 @@ function serve() {
         .on('change', browserSync.reload)
 
     watch(`${ dirs.src }/js/**/*.js`, compileScript)
+        .on('change', browserSync.reload)
+
+    watch(`${ dirs.src }/img/**/*`, processImages)
+        .on('change', browserSync.reload)
+
+    watch(`${ dirs.src }/icons/*.svg`, processIcons)
+        .on('change', browserSync.reload)
+
+    watch(`${ dirs.src }/other/**/*`, processOtherAssets)
         .on('change', browserSync.reload)
 }
 

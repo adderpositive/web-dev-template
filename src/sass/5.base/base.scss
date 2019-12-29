@@ -1,3 +1,11 @@
+@import '../1.setting/variables';
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
 html {
     font-size: 62.5%;
 }
@@ -6,6 +14,7 @@ body {
     font-size: 1rem;
     font-family: $font;
     color: $black-alfa;
+    font-weight: 400;
 }
 
 b, strong {
@@ -48,6 +57,18 @@ button {
     position: absolute;
     top: -9999px;
     left: -9999px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.inner {
+    max-width: 1130px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media only screen and (max-width: 1600px) {
