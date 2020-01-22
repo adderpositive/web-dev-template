@@ -1,6 +1,16 @@
+@import '../2.helpers/clearfix';
+@import '../2.helpers/media-query';
+
 $transparent: rgba(0, 0, 0, 0);
 
 $black-alfa: #000;
 $white-alfa: #fff;
 
 $font: 'Arial', sans-serif;
+
+$breakpoints: (
+  xs: 600px,
+  sm: 900px,
+  md: 1200px,
+  lg: 1600px
+);

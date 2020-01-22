@@ -1,0 +1,81 @@
+@import '../1.setting/variables';
+
+$width: 40px;
+$height: 33px;
+$thickness: 4px;
+$length: 30px;
+$gap: 5px;
+$duration: .2s;
+$color1: $white-alfa;
+$color2: $color1;
+$color3: $color1;
+
+//count positions of hamburger layers
+$top1: $height / 2 - $gap - 1.5 * $thickness;
+$top2: $height / 2 - $thickness / 2;
+$top3: $height / 2 + $gap + $thickness / 2;
+
+.hamburger {
+    position: relative;
+    width: $width;
+    height: $height;
+    background: $transparent;
+    cursor: pointer;
+
+    span,
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: ($width - $length) / 2;
+        width: $length;
+        height: $thickness;
+        transform-origin: 50% 50%;
+    }
+
+    &::before {
+        top: $top1;
+        background: $color1;
+        transition-property: top, transform;
+        transition-duration: .4 * $duration, .6 * $duration;
+        transition-timing-function: ease-in-out;
+        transition-delay: .6 * $duration, 0s;
+    }
+
+    span {
+        top: $top2;
+        background: $color2;
+        transition-property: opacity;
+        transition-duration: 0s;
+        transition-timing-function: linear;
+        transition-delay: .4 * $duration;
+    }
+
+    &::after {
+        top: $top3;
+        background: $color3;
+        transition-property: top, transform;
+        transition-duration: .4 * $duration, .6 * $duration;
+        transition-timing-function: ease-in-out;
+        transition-delay: .6 * $duration, 0s;
+    }
+
+    &.is-active {
+
+        &::before {
+            top: $top2;
+            transform: rotate(-45deg);
+            transition-delay: 0s, .4 * $duration;
+        }
+
+        span {
+            opacity: 0;
+        }
+
+        &::after {
+            top: $top2;
+            transform: rotate(45deg);
+            transition-delay: 0s, .4 * $duration;
+        }
+    }
+}

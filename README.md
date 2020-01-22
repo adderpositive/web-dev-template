@@ -1,1 +1,1 @@
-praga
+default template
