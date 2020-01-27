@@ -38,9 +38,11 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-better-rollup": "^4.0.1",
+    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^6.0.0",
     "gulp-imagemin": "^6.2.0",
+    "gulp-minify": "^3.1.0",
     "gulp-pretty-html": "^2.0.10",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
@@ -48,7 +50,7 @@
     "gulp-twig": "^1.2.0",
     "gulp-util": "^3.0.8",
     "imagemin-jpeg-recompress": "^6.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.12.0",
     "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -58,6 +60,7 @@
     "bootstrap": "^4.3.1",
     "cash-dom": "^4.1.5",
     "svg4everybody": "^2.1.9",
-    "lodash.template": ">=4.5.0"
+    "swiper": "^5.2.1",
+    "vinyl-ftp": "^0.6.1"
   }
 }
