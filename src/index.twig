@@ -14,4 +14,37 @@
     <svg>
         <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
     </svg>
+
+    <!-- swiper example -->
+    <div class="swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="{{ path }}/img/image.jpg" alt="" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{ path }}/img/image.jpg" alt="" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{ path }}/img/image.jpg" alt="" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{ path }}/img/image.jpg" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next">
+            <svg>
+                <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
+            </svg>
+        </div>
+        <div class="swiper-button-prev">
+            <svg>
+                <use xlink:href="{{ path }}/img/icons.svg#ico-02" />
+            </svg>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    {% include "./html/components/footer.twig"%}
 {% endblock %}

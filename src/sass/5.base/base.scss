@@ -8,11 +8,12 @@
 
 html {
     font-size: 62.5%;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
     font-size: 1rem;
-    font-family: $font;
+    font-family: $font-alfa;
     color: $black-alfa;
     font-weight: 400;
     scroll-behavior: smooth;
