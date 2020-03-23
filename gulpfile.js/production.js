@@ -58,7 +58,7 @@ const templates = () => {
             }
 
             if(path && fs.lstatSync(path).isFile()) {
-                files.push(path.replace('../public', ''));
+                files.push(path.replace('./prod', ''));
             }
         });
 
