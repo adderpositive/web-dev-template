@@ -10,6 +10,8 @@ const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const svgstore = require('gulp-svgstore');
 const npmDist = require('gulp-npm-dist');
 const rename = require('gulp-rename');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 
 sass.compiler = require('node-sass');
 
@@ -128,7 +130,17 @@ const copyScripts = () => {
         .pipe(rename(function(path) {
             path.dirname = path.dirname.replace(/\/dist/, '').replace(/\\dist/, '');
         }))
-        .pipe(dest('./dev/js'));
+        .pipe(dest(`${ dirs.dest }/js`));
+};
+
+const compileScripts = () => {
+    return src(`${ dirs.src }/js/**/*.js`)
+        .pipe(babel({
+            presets: ['@babel/preset-env']
+        }))
+        // .pipe(concat('script.js'))
+        // .pipe(uglify())
+        .pipe(dest(`${ dirs.dest }/js`));
 };
 
 const serve = () => {
@@ -146,8 +158,8 @@ const serve = () => {
     watch(`${ dirs.src }/sass/**/*.scss`, compileSass)
         .on('change', browserSync.reload)
 
-    // watch(`${ dirs.src }/js/**/*.js`, compileScript)
-    //     .on('change', browserSync.reload)
+    watch(`${ dirs.src }/js/**/*.js`, compileScripts)
+        .on('change', browserSync.reload)
 
     watch(`${ dirs.src }/img/**/*`, processImages)
         .on('change', browserSync.reload)
@@ -163,6 +175,7 @@ exports.development = series(
     removeFiles,
     compileSass,
     copyScripts,
+    compileScripts,
     processImages,
     processIcons,
     processOtherAssets,

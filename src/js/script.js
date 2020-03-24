@@ -1,11 +1,10 @@
-import $ from 'cash-dom';
-import svg4everybody from 'svg4everybody';
-// import inpageScroll from './components/inpageScroll';
-import initSwiper from './components/swiper';
+// svgforeverybody
+(function() {
+  svg4everybody();
+}());
 
-svg4everybody();
-
-$(document).ready(() => {
-  // inpageScroll();
-  initSwiper();
-});
+// main
+(function() {
+  const test = () => 'ahoj světe';
+  console.log(test());
+}());
