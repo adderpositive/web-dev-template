@@ -3,16 +3,13 @@ const del = require('del');
 const twig = require('gulp-twig');
 const sass = require('gulp-sass');
 const fs = require('fs');
-const rollup = require('gulp-better-rollup');
-const babel = require('rollup-plugin-babel');
-const resolve = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const svgstore = require('gulp-svgstore');
-const eslint = require('gulp-eslint');
+const npmDist = require('gulp-npm-dist');
+const rename = require('gulp-rename');
 
 sass.compiler = require('node-sass');
 
@@ -82,16 +79,6 @@ const compileSass = () => {
         .pipe(dest(`${ dirs.dest }/css`));
 };
 
-const compileScript = () => {
-    return src(`${ dirs.src }/js/**/*.js`)
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(sourcemaps.init())
-        .pipe(rollup({ plugins: [babel(), resolve(), commonjs()] }, 'umd'))
-        .pipe(concat('script.js'))
-        .pipe(sourcemaps.write('.'))
-        .pipe(dest(`${ dirs.dest }/js`));
-};
 
 const processImages = () => {
     return src(`${ dirs.src }/img/**/*`)
@@ -132,6 +119,18 @@ const processOtherAssets = () => {
         .pipe(dest(`${ dirs.dest }/other`));
 };
 
+const copyScripts = () => {
+    // Copy dependencies to ./dev/js/
+    return src(npmDist({
+            copyUnminified: false,
+            excludes: ['/**/*.txt']
+        }), {base:'./node_modules'})
+        .pipe(rename(function(path) {
+            path.dirname = path.dirname.replace(/\/dist/, '').replace(/\\dist/, '');
+        }))
+        .pipe(dest('./dev/js'));
+};
+
 const serve = () => {
     browserSync.init({
         server: {
@@ -147,8 +146,8 @@ const serve = () => {
     watch(`${ dirs.src }/sass/**/*.scss`, compileSass)
         .on('change', browserSync.reload)
 
-    watch(`${ dirs.src }/js/**/*.js`, compileScript)
-        .on('change', browserSync.reload)
+    // watch(`${ dirs.src }/js/**/*.js`, compileScript)
+    //     .on('change', browserSync.reload)
 
     watch(`${ dirs.src }/img/**/*`, processImages)
         .on('change', browserSync.reload)
@@ -163,7 +162,7 @@ const serve = () => {
 exports.development = series(
     removeFiles,
     compileSass,
-    compileScript,
+    copyScripts,
     processImages,
     processIcons,
     processOtherAssets,
