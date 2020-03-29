@@ -3,20 +3,19 @@ const del = require('del');
 const twig = require('gulp-twig');
 const sass = require('gulp-sass');
 const fs = require('fs');
-const rollup = require('gulp-better-rollup');
-const babel = require('rollup-plugin-babel');
-const resolve = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const svgstore = require('gulp-svgstore');
-const eslint = require('gulp-eslint');
 const cleanCSS = require('gulp-clean-css');
 const minify = require('gulp-minify');
 const gutil = require( 'gulp-util' );
 const ftp = require( 'vinyl-ftp' );
+const npmDist = require('gulp-npm-dist');
+const rename = require('gulp-rename');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 
 sass.compiler = require('node-sass');
 
@@ -40,10 +39,13 @@ const removeFiles = () => {
 };
 
 const templates = () => {
+    const env = process.env.NODE_ENV || 'development';
     let cssFiles = [];
     let jsFiles = [
         'script.js'
     ];
+
+    console.log(env);
 
     // get files in file system by destination
     // @return found files
@@ -70,14 +72,14 @@ const templates = () => {
     return src(`${ dirs.src }/*.twig`)
         .pipe( twig({
             data: {
-                title: 'Default template',
-                description: '',
-                version: '0.0.1',
-                robots: 'noindex, nofollow',
-                currentPath: 'https://example.com',
-                twitter: '@example',
-                imageHP: 'https://example.com/img/hp.jpg',
-                email: 'info@example.com',
+                title: '',
+                description: ' ',
+                version: '',
+                robots: '',
+                currentPath: '',
+                twitter: '',
+                ogImage: '',
+                email: '',
                 path: '.',
                 cssFiles,
                 jsFiles
@@ -101,18 +103,6 @@ const compileSass = () => {
             console.log(`${details.name}: ${details.stats.minifiedSize}`);
         }))
         .pipe(dest(`${ dirs.prod }/css`));
-};
-
-const compileScript = () => {
-    return src(`${ dirs.src }/js/**/*.js`)
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(sourcemaps.init())
-        .pipe(rollup({ plugins: [babel(), resolve(), commonjs()] }, 'umd'))
-        .pipe(concat('script.js'))
-        .pipe(minify())
-        .pipe(sourcemaps.write('.'))
-        .pipe(dest(`${ dirs.prod }/js`));
 };
 
 const processImages = () => {
@@ -154,12 +144,34 @@ const processOtherAssets = () => {
         .pipe(dest(`${ dirs.prod }/other`));
 };
 
+const copyScripts = () => {
+    // Copy dependencies to ./dev/js/
+    return src(npmDist({
+            copyUnminified: false,
+            excludes: ['/**/*.txt']
+        }), {base:'./node_modules'})
+        .pipe(rename(function(path) {
+            path.dirname = path.dirname.replace(/\/dist/, '').replace(/\\dist/, '');
+        }))
+        .pipe(dest(`${ dirs.prod }/js`));
+};
+
+const compileScripts = () => {
+    return src(`${ dirs.src }/js/**/*.js`)
+        .pipe(babel({
+            presets: ['@babel/preset-env']
+        }))
+        // .pipe(concat('script.js'))
+        // .pipe(uglify())
+        .pipe(dest(`${ dirs.prod }/js`));
+};
+
 const deploy = () => {
     const conn = ftp.create({
         host:       '',
         user:       '',
         password:   '',
-        parallel:   10,
+        parallel:   3,
         log:        gutil.log
     });
 
@@ -167,15 +179,16 @@ const deploy = () => {
     // using base = '.' will transfer everything to /public_html correctly
     // turn off buffering in gulp.src for best performance
     return src(`${ dirs.prod }/**`, { buffer: false } )
-        .pipe(conn.newer('/')) // only upload newer files
-        .pipe(conn.dest('/'));
+        .pipe(conn.newer('/www/dev/')) // only upload newer files
+        .pipe(conn.dest('/www/dev/'));
 
 };
 
 exports.production = series(
     removeFiles,
     compileSass,
-    compileScript,
+    copyScripts,
+    compileScripts,
     processImages,
     processIcons,
     processOtherAssets,
@@ -184,13 +197,15 @@ exports.production = series(
 
 exports.productionUpdate = series(
     compileSass,
-    compileScript,
+    copyScripts,
+    compileScripts,
 );
 
 exports.productionDeploy = series(
     removeFiles,
     compileSass,
-    compileScript,
+    copyScripts,
+    compileScripts,
     processImages,
     processIcons,
     processOtherAssets,
