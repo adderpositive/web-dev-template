@@ -18,7 +18,7 @@ const dirs = {
 // functions
 const removeFiles = () => cDelFiles.removeFiles(dirs.dest);
 const createTemplates = () => cTemplates.createTemplates(dirs.src, dirs.dest);
-const compileSass = () => cSass.compileSass(dirs.src, dirs.dest);
+const compileSass = () => cSass.compileSass(dirs.src, dirs.dest, 'development');
 const processImages = () => cAssets.processImages(dirs.src, dirs.dest);
 const processIcons = () => cAssets.processIcons(dirs.src, dirs.dest);
 const processOtherAssets = () => cAssets.processOtherAssets(dirs.src, dirs.dest);

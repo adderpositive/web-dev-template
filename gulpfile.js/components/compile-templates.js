@@ -22,7 +22,7 @@ const createTemplates = (srcTemp, destTemp) => {
             }
 
             if(path && fs.lstatSync(path).isFile()) {
-                files.push(path.replace('./dev', ''));
+                files.push(path.replace(destTemp, ''));
             }
         });
 
