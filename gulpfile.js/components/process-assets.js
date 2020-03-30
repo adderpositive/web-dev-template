@@ -2,6 +2,7 @@ const { src, dest } = require('gulp');
 const imagemin = require('gulp-imagemin');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const svgstore = require('gulp-svgstore');
+const newer = require('gulp-newer');
 
 const processImages = (srcTemp, destTemp) => {
     return src(`${ srcTemp }/img/**/*`)
@@ -31,6 +32,14 @@ const processImages = (srcTemp, destTemp) => {
         .pipe(dest((`${ destTemp }/img`)));
 };
 
+const processNewImages = (srcTemp, destTemp) => {
+    return src(`${ srcTemp }/img/**/*`)
+      .pipe(newer(`${ destTemp }/img`))
+      .pipe(imagemin())
+      .pipe(dest((`${ destTemp }/img`)));
+};
+
+
 const processIcons = (srcTemp, destTemp) => {
     return src(`${ srcTemp }/icons/*`)
         .pipe(svgstore())
@@ -43,5 +52,6 @@ const processOtherAssets = (srcTemp, destTemp) => {
 };
 
 exports.processImages = processImages;
+exports.processNewImages = processNewImages;
 exports.processIcons = processIcons;
 exports.processOtherAssets = processOtherAssets;

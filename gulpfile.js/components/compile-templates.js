@@ -3,7 +3,7 @@ const fs = require('fs');
 const twig = require('gulp-twig');
 const prettyHtml = require("gulp-pretty-html");
 
-const createTemplates = (srcTemp, destTemp) => {
+const createTemplates = (srcTemp, destTemp, config, enviroment) => {
     let cssFiles = [];
     let jsFiles = [
         'script.js'
@@ -34,15 +34,16 @@ const createTemplates = (srcTemp, destTemp) => {
     return src(`${ srcTemp }/*.twig`)
         .pipe( twig({
             data: {
-                title: '',
-                description: ' ',
-                version: '',
-                robots: '',
-                currentPath: '',
-                twitter: '',
-                ogImage: '',
-                email: '',
-                path: '.',
+                title: config.title,
+                description: config.description,
+                version: config.version,
+                robots: enviroment === 'production' ? 'index, follow' : 'noindex, nofollow',
+                currentPath: config.currentPath,
+                twitter: config.twitter,
+                ogImage: config.ogImage,
+                email: config.email,
+                logoWithPath: config.logoWithPath,
+                path: config.pathToAssets,
                 cssFiles,
                 jsFiles
             }

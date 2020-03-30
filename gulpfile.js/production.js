@@ -1,6 +1,7 @@
 const { series, parallel } = require('gulp');
 
 // components
+const cRequireConfig = require('./components/config-load');
 const cDelFiles = require('./components/remove-files');
 const cTemplates = require('./components/compile-templates');
 const cSass = require('./components/compile-sass');
@@ -9,45 +10,38 @@ const cScripts = require('./components/compile-scripts');
 const cDeploy = require('./components/deploy');
 
 // config
-const dirs = {
-    src: './src',
-    dest: './dev',
-    prod: './prod'
-};
+const config = cRequireConfig.requireConfig(`${__dirname.replace('gulpfile.js', '')}config.json`);
+const enviroment = 'production';
 
-const config = {
-    hosting: {
-        host: '',
-        user: '',
-        password: '',
-        parallel: 3,
-        hostingDirectory: '/',
-    },
-};
+if (!config) {
+    return;
+}
 
 // functions
-const removeFiles = () => cDelFiles.removeFiles(dirs.prod);
-const createTemplates = () => cTemplates.createTemplates(dirs.src, dirs.prod);
-const compileSass = () => cSass.compileSass(dirs.src, dirs.prod, 'production');
-const processImages = () => cAssets.processImages(dirs.src, dirs.prod);
-const processIcons = () => cAssets.processIcons(dirs.src, dirs.prod);
-const processOtherAssets = () => cAssets.processOtherAssets(dirs.src, dirs.prod);
-const copyScripts = () => cScripts.copyScripts(dirs.prod);
-const compileScripts = () => cScripts.compileScripts(dirs.src, dirs.prod);
-const deploy = () => cDeploy.deploy(dirs.prod, config.hosting);
+const removeFiles = () => cDelFiles.removeFiles(config.production.dir);
+const createTemplates = () => cTemplates.createTemplates(config.dirSource, config.production.dir, config, enviroment);
+const compileSass = () => cSass.compileSass(config.dirSource, config.production.dir, enviroment);
+const processImages = () => cAssets.processImages(config.dirSource, config.production.dir);
+const processIcons = () => cAssets.processIcons(config.dirSource, config.production.dir);
+const processOtherAssets = () => cAssets.processOtherAssets(config.dirSource, config.production.dir);
+const copyScripts = () => cScripts.copyScripts(config.production.dir);
+const compileScripts = () => cScripts.compileScripts(config.dirSource, config.production.dir);
+const deploy = () => cDeploy.deploy(config.production.dir, config.production.hosting);
 
 exports.production = series(
     removeFiles,
-    compileSass,
-    copyScripts,
-    compileScripts,
-    processImages,
-    processIcons,
-    processOtherAssets,
+    parallel(
+        compileSass,
+        copyScripts,
+        compileScripts,
+        processImages,
+        processIcons,
+        processOtherAssets,
+    ),
     createTemplates,
 );
 
-exports.productionUpdate = series(
+exports.productionUpdate = parallel(
     compileSass,
     copyScripts,
     compileScripts,
@@ -55,12 +49,15 @@ exports.productionUpdate = series(
 
 exports.productionDeploy = series(
     removeFiles,
-    compileSass,
-    copyScripts,
-    compileScripts,
-    processImages,
-    processIcons,
-    processOtherAssets,
+    parallel(
+        compileSass,
+        copyScripts,
+        compileScripts,
+        processImages,
+        processIcons,
+        processOtherAssets,
+    ),
     createTemplates,
     deploy,
 );
+

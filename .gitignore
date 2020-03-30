@@ -3,3 +3,4 @@ dev
 prod
 .sublime-gulp.cache
 _materials
+config.json

@@ -1,0 +1,38 @@
+{
+    "version": "0.0.1.",
+    "title": "Default template",
+    "description": "Default template",
+    "currentPath": "https://example.com",
+    "twitter": "@example",
+    "ogImage": "https://example.com/img/hp.jpg",
+    "logoWithPath": "https://example.com/img/logo.png",
+    "email": "info@example.com",
+    "path": ".",
+    "dirSource": "./src",
+    "data": {
+
+    },
+    "development": {
+        "dir": "./dev"
+    },
+    "production": {
+        "dir": "./prod",
+        "hosting": {
+            "host": "",
+            "user": "",
+            "password": "",
+            "parallel": 3,
+            "hostingDirectory": "/"
+        }
+    },
+    "stage": {
+        "dir": "./prod",
+        "hosting": {
+            "host": "",
+            "user": "",
+            "password": "",
+            "parallel": 3,
+            "hostingDirectory": "/dev"
+        }
+    }
+}
