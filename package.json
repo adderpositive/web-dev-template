@@ -1,7 +1,7 @@
 {
   "name": "web-dev-template",
   "version": "0.0.1",
-  "description": "A template for creating website with Wordpress or Slim framework.",
+  "description": "A default development stack for creating static HTML templates.",
   "scripts": {
     "dev": "gulp dev",
     "prod": "gulp prod",
