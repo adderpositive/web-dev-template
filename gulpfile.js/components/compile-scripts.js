@@ -5,6 +5,7 @@ const npmDist = require('gulp-npm-dist');
 const rename = require('gulp-rename');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
+const standard = require('gulp-standard')
 
 
 const copyScripts = (destTemp) => {
@@ -20,7 +21,12 @@ const copyScripts = (destTemp) => {
 };
 
 const compileScripts = (srcTemp, destTemp) => {
-    return src(`${ srcTemp }/js/**/*.js`)
+    return src([`${ srcTemp }/js/**/*.js`, `!${ srcTemp }/js/**/_*.js`])
+        .pipe(standard())
+        .pipe(standard.reporter('default'), {
+            breakOnError: true,
+            quite: true,
+        })
         .pipe(babel({
             presets: ['@babel/preset-env']
         }))

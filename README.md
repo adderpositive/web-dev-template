@@ -31,24 +31,24 @@ TODO
 ## TODO default
 - [x] add config 
 - [x] deploy
-- [] add https://standardjs.com/index.html & jslint?
-- [] stage version
-- [] work with enviroment variable
-- [] posibility to concate files CSS & JS to one (http 1.0)
-- [] posibility to separate files CSS & JS (http 2.0)
-- [] autoloading plugins to templates
-- [] work with images as in wordpress?!
-- [] tasks optimalized for slim framework & wordpress (plan)
+- [x] add https://standardjs.com/index.html & jslint?
+- [ ] stage version
+- [ ] work with enviroment variable
+- [ ] posibility to concate files CSS & JS to one (http 1.0)
+- [ ] posibility to separate files CSS & JS (http 2.0)
+- [ ] autoloading plugins to templates
+- [ ] work with images as in wordpress?!
+- [ ] tasks optimalized for slim framework & wordpress (plan)
 
 ## TODO plugins
 - [x] swiper
 - [x] inpage scroll
-- [] menu fix
-- [] popup
-- [] gallery
-- [] video snippet
-- [] lazy loading
-- [] forms, API request
+- [ ] menu fix
+- [ ] popup
+- [ ] gallery
+- [ ] video snippet
+- [ ] lazy loading
+- [ ] forms, API request
 
 ## Some materials
 - https://gulpjs.com/docs/en/getting-started/explaining-globs

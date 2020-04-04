@@ -45,8 +45,10 @@
     "gulp-twig": "^1.2.0",
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
+    "gulp-standard": "^14.0.0",
     "imagemin-jpeg-recompress": "^6.0.0",
     "node-sass": "^4.12.0",
+    "standard": "^14.3.3",
     "vinyl-ftp": "^0.6.1"
   },
   "dependencies": {
