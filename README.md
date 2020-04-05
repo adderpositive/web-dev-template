@@ -11,6 +11,7 @@ Stack uses following modules:
 - Svgstore - creating SVG map + svgforeverybody polyfill
 
 ## Project structure:
+```
 .
 ├── \_materials
 ├── dev                     # Development files visible on local server
@@ -32,6 +33,7 @@ Stack uses following modules:
 ├── package-lock.json
 ├── package.json
 └── README.md
+```
 
 ## Install
 
