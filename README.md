@@ -1,39 +1,122 @@
-# Development stack
-A default development stack for creating static HTML templates.
+# Vyvojářský stack
+Default stack for developing static HTML templates.
 
-## Requirements
-- Node.js
+Stack uses following modules:
+- Gulp.js - automation tool
+- Browsersync - creating of local server
+- Twig - templating system for HTML
+- SASS - precompiler for CSS
+- Babel - for possibility to use modern features in JS
+- Imagemin - partial optimalization of images
+- Svgstore - creating SVG map + svgforeverybody polyfill
+
+## Project structure:
+.
+├── \_materials
+├── dev                     # Development files visible on local server
+├── gulpfile.js
+├── node_modules
+├── prod                    # Production/stage compiles files
+├── src
+│   ├── html                # Twig reusable components
+│   ├── icons               # Only svg icons
+│   ├── img                 
+│   ├── js                  
+│   ├── other               # Materials like videos, fonts, favicons etd.
+│   ├── sass                
+│   └── index.twig          # In root of `src` folder should be all templates
+├── .editorconfig
+├── .gitignore
+├── example.config.json     # Default project setting - should be duplicated to `config.json`
+├── LICENSE.md
+├── package-lock.json
+├── package.json
+└── README.md
 
 ## Install
-Command: `npm install`
 
-## Default setting
+### Requirements
+- Node.js
+- Gulp.js
+
+> Command for installation: `npm install`
+
+### Default setting
 1. Duplicate `example.config.json`
 2. Rename it to `config.json`
 3. Create a set up in `config.json`
 
-## Development version
-### Tasks
-`gulp default`
+## Tasks
+> Recommendation: Use `npm run [-task]` rather than `gulp [-task]`.
 
-## Stage version
-### Tasks
-TODO
+### Development version
+Following task creates a server on https://localhost:8000, where you can see real time changes you make in `/src` directory. While task is running, `/src` is compiled to `/dev`.
 
-## Production version
-### Tasks
-`gulp production`
+**Task to run:**
 
-`gulp productionUpdate` - fast version (compile sass & scripts)
+`npm run default` or `gulp default`
 
-`gulp productionDeploy` - production deploy according to `config.json`
+### Stage version
+> You should have created remote server & access data for server saved in `config.json`.
+
+Next task creates stage version for all templates & make a deploy on hosting for testing reasons.
+
+**Task to run:**
+
+`npm run stage` or `gulp production --env=stage`
+
+---
+
+Make an update of JS & CSS files & make a deploy on hosting for testing reasons.
+
+**Task to run:**
+
+`npm run stage-update` or `gulp productionUpdate --env=stage`
+
+---
+
+Create stage version in `/prod` directory.
+
+**Task to run:**
+
+`npm run stage-export` or `gulp productionExport --env=stage`
+
+### Production version
+> You should have created remote server & access data for server saved in `config.json`.
+
+Next task creates production version for all templates & make a deploy on hosting.
+
+**Task to run:**
+
+`npm run prod`
+or
+`gulp production --env=production`
+
+---
+
+Make an update of JS & CSS files & make a deploy on hosting.
+
+**Task to run:**
+
+`npm run prod-update`
+or
+`gulp productionUpdate --env=production`
+
+---
+
+Create production version in `/prod` directory.
+
+**Task to run:**
+
+`npm run prod-export` or `gulp productionExport --env=production`
 
 ## TODO default
 - [x] add config 
 - [x] deploy
 - [x] add https://standardjs.com/index.html & jslint?
-- [ ] stage version
-- [ ] work with enviroment variable
+- [x] stage version
+- [x] work with enviroment variable
+- [x] basic documentation 
 - [ ] posibility to concate files CSS & JS to one (http 1.0)
 - [ ] posibility to separate files CSS & JS (http 2.0)
 - [ ] autoloading plugins to templates
@@ -49,7 +132,3 @@ TODO
 - [ ] video snippet
 - [ ] lazy loading
 - [ ] forms, API request
-
-## Some materials
-- https://gulpjs.com/docs/en/getting-started/explaining-globs
-- https://www.sitepoint.com/automate-css-tasks-gulp/
