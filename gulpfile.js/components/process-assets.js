@@ -4,7 +4,10 @@ const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const svgstore = require('gulp-svgstore');
 const newer = require('gulp-newer');
 
-const processImages = (srcTemp, destTemp) => {
+const processImages = (config) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
+
     return src(`${ srcTemp }/img/**/*`)
         .pipe(imagemin([
             imagemin.gifsicle({
@@ -32,7 +35,10 @@ const processImages = (srcTemp, destTemp) => {
         .pipe(dest((`${ destTemp }/img`)));
 };
 
-const processNewImages = (srcTemp, destTemp) => {
+const processNewImages = (config) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
+
     return src(`${ srcTemp }/img/**/*`)
       .pipe(newer(`${ destTemp }/img`))
       .pipe(imagemin())
@@ -40,13 +46,19 @@ const processNewImages = (srcTemp, destTemp) => {
 };
 
 
-const processIcons = (srcTemp, destTemp) => {
+const processIcons = (config) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
+
     return src(`${ srcTemp }/icons/*`)
         .pipe(svgstore())
         .pipe(dest(`${ destTemp }/img`));
 };
 
-const processOtherAssets = (srcTemp, destTemp) => {
+const processOtherAssets = (config) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
+
     return src(`${ srcTemp }/other/**/*`)
         .pipe(dest(`${ destTemp }/other`));
 };

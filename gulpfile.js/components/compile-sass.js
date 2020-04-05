@@ -5,11 +5,13 @@ var gulpif = require('gulp-if');
 
 sass.compiler = require('node-sass');
 
-const compileSass = (srcTemp, destTemp, enviroment) => {
+const compileSass = (config) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
     return src(`${ srcTemp }/sass/**/*.scss`)
         .pipe(sass().on('error', sass.logError))
         .pipe(
-            gulpif(enviroment === 'production',
+            gulpif(config.enviroment !== 'production',
                 cleanCSS({
                     compatibility: 'ie11',
                     debug: true,

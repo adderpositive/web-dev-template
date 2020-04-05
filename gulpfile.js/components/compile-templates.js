@@ -3,16 +3,18 @@ const fs = require('fs');
 const twig = require('gulp-twig');
 const prettyHtml = require("gulp-pretty-html");
 
-const createTemplates = (srcTemp, destTemp, config, enviroment) => {
-    let cssFiles = [];
-    let jsFiles = [
+const createTemplates = (config) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
+    const cssFiles = [];
+    const jsFiles = [
         'script.js'
     ];
 
     // get files in file system by destination
     // @return found files
     const getFiles = (destination, files) => {
-        let directoryItems = fs.readdirSync(destination);
+        const directoryItems = fs.readdirSync(destination);
 
         directoryItems.forEach( function(element, index) {
             const path = `${destination}/${element}`;
@@ -31,13 +33,15 @@ const createTemplates = (srcTemp, destTemp, config, enviroment) => {
 
     getFiles(`${ destTemp }/css`, cssFiles);
 
+    console.log(config[config.enviroment]);
+
     return src(`${ srcTemp }/*.twig`)
         .pipe( twig({
             data: {
                 title: config.title,
                 description: config.description,
                 version: config.version,
-                robots: enviroment === 'production' ? 'index, follow' : 'noindex, nofollow',
+                robots: config.enviroment === 'production' ? 'index, follow' : 'noindex, nofollow',
                 currentPath: config.currentPath,
                 twitter: config.twitter,
                 ogImage: config.ogImage,

@@ -2,8 +2,7 @@ const { src, dest, watch } = require('gulp');
 const browserSync = require('browser-sync').create();
 
 const createServer = (
-    srcTemp,
-    destTemp,
+    config,
     createTemplates,
     compileSass,
     compileScripts,
@@ -11,13 +10,16 @@ const createServer = (
     processIcons,
     processOtherAssets
 ) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
+
     browserSync.init({
         server: {
             baseDir: destTemp,
         },
         https: true,
         port: 8000,
-        open: false,
+        open: true,
     });
 
     watch(`${ srcTemp }/**/*.twig`, createTemplates)

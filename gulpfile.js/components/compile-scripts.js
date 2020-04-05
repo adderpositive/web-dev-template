@@ -8,7 +8,9 @@ const uglify = require('gulp-uglify');
 const standard = require('gulp-standard')
 
 
-const copyScripts = (destTemp) => {
+const copyScripts = (config) => {
+    const destTemp = config[config.enviroment].dir;
+
     // Copy dependencies to ./dev/js/
     return src(npmDist({
             copyUnminified: false,
@@ -20,7 +22,10 @@ const copyScripts = (destTemp) => {
         .pipe(dest(`${ destTemp }/js`));
 };
 
-const compileScripts = (srcTemp, destTemp) => {
+const compileScripts = (config) => {
+    const srcTemp = config.dirSource;
+    const destTemp = config[config.enviroment].dir;
+
     return src([`${ srcTemp }/js/**/*.js`, `!${ srcTemp }/js/**/_*.js`])
         .pipe(standard())
         .pipe(standard.reporter('default'), {
