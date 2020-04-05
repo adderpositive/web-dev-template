@@ -33,8 +33,6 @@ const createTemplates = (config) => {
 
     getFiles(`${ destTemp }/css`, cssFiles);
 
-    console.log(config[config.enviroment]);
-
     return src(`${ srcTemp }/*.twig`)
         .pipe( twig({
             data: {
