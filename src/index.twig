@@ -2,48 +2,82 @@
 
 {% block page %}
     {% include "./html/components/header.twig"%}
-    <p>
-        This page is genedrated by Twig.js using the gulp-twig gulp plugin.
-    </p>
-    <ul>
-        {% for value in benefits %}
-            <li>{{ value }}</li>
-        {% endfor %}
-    </ul>
-    <img src="{{ path }}/img/image.jpg" alt="" />
-    <svg>
-        <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
-    </svg>
 
-    <!-- swiper example -->
-    <div class="swiper">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="{{ path }}/img/image.jpg" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{ path }}/img/image.jpg" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{ path }}/img/image.jpg" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{ path }}/img/image.jpg" alt="" />
+    <div class="inner">
+        <p>
+            This page is genedrated by Twig.js using the gulp-twig gulp plugin.
+        </p>
+        <ul>
+            {% for value in benefits %}
+                <li>{{ value }}</li>
+            {% endfor %}
+        </ul>
+        <img src="{{ path }}/img/image.jpg" alt="" />
+        <svg>
+            <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
+        </svg>
+
+        <!-- swiper example -->
+        <div class="swiper">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="{{ path }}/img/image.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ path }}/img/image.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ path }}/img/image.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ path }}/img/image.jpg" alt="" />
+                    </div>
                 </div>
             </div>
+            <div class="swiper-button-next">
+                <svg>
+                    <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
+                </svg>
+            </div>
+            <div class="swiper-button-prev">
+                <svg>
+                    <use xlink:href="{{ path }}/img/icons.svg#ico-02" />
+                </svg>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-button-next">
-            <svg>
-                <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
-            </svg>
+
+        <div class="js-gallery gallery">
+            <div class="gallery-wrap">
+                <div class="gallery__item-wrap">
+                    <a class="gallery__item" href="{{ path }}/img/image.jpg" >
+                        <img src="{{ path }}/img/image.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="gallery__item-wrap">
+                    <a class="gallery__item" href="{{ path }}/img/image.jpg" >
+                        <img src="{{ path }}/img/image.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="gallery__item-wrap">
+                    <a class="gallery__item" href="{{ path }}/img/image.jpg" >
+                        <img src="{{ path }}/img/image.jpg" alt="image">
+                    </a>
+                </div>
+            </div>
+            <div class="button-wrap">
+                <a class="button is-not-gallery-item" href="#">Button</a>
+            </div>
         </div>
-        <div class="swiper-button-prev">
-            <svg>
-                <use xlink:href="{{ path }}/img/icons.svg#ico-02" />
-            </svg>
+
+        <div class="js-gallery popup-wrap">
+            <a class="" href="#popup" >Open popup</a>
+            <div id="popup" class="popup">
+                <h1>Hey, what's up.</h1>
+                <p> Hey, what's up.</p>
+            </div>
         </div>
-        <div class="swiper-pagination"></div>
     </div>
 
     {% include "./html/components/footer.twig"%}

@@ -124,13 +124,15 @@ Create production version in `/prod` directory.
 - [ ] autoloading plugins to templates
 - [ ] work with images as in wordpress?!
 - [ ] tasks optimalized for slim framework & wordpress (plan)
+- [ ] make automated creating of .scss files according to classes - prefixes (b-, p-, c-, s-, u-)
 
 ## TODO plugins
 - [x] swiper
 - [x] inpage scroll
 - [ ] menu fix
 - [ ] popup
-- [ ] gallery
+- [x] gallery
 - [ ] video snippet
 - [ ] lazy loading
 - [ ] forms, API request
+- [ ] add basic styles for some components

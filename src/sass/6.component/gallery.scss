@@ -1,0 +1,40 @@
+@import '../1.setting/variables';
+
+.gallery {
+
+}
+
+.gallery-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.gallery__item-wrap {
+    width: 47.5%;
+    flex: none;
+    margin-top: 30px;
+}
+
+/*
+    For flex items padding-bottom calculates with container width
+    instead of item width, so wrap is needed here.
+*/
+.gallery__item {
+    display: block;
+    position: relative;
+    height: 0;
+    width: 100%;
+    padding-bottom: 56.5%; // 56.5% according to width
+    overflow: hidden;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+}
