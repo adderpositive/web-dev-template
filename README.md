@@ -132,7 +132,8 @@ Create production version in `/prod` directory.
 - [x] menu fix
 - [x] popup
 - [x] gallery
+- [x] add basic styles for some components
 - [ ] video snippet
 - [ ] lazy loading
 - [ ] forms, API request
-- [x] add basic styles for some components
+
