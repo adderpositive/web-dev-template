@@ -19,33 +19,35 @@
 
         <!-- swiper example -->
         <div class="swiper">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ path }}/img/image.jpg" alt="" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ path }}/img/image.jpg" alt="" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ path }}/img/image.jpg" alt="" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ path }}/img/image.jpg" alt="" />
+            <div class="swiper-wrap">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="{{ path }}/img/image.jpg" alt="" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{{ path }}/img/image.jpg" alt="" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{{ path }}/img/image.jpg" alt="" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{{ path }}/img/image.jpg" alt="" />
+                        </div>
                     </div>
                 </div>
+                <div class="swiper-button-prev">
+                    <svg>
+                        <use xlink:href="{{ path }}/img/icons.svg#arrow-left" />
+                    </svg>
+                </div>
+                <div class="swiper-button-next">
+                    <svg>
+                        <use xlink:href="{{ path }}/img/icons.svg#arrow-right" />
+                    </svg>
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-button-next">
-                <svg>
-                    <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
-                </svg>
-            </div>
-            <div class="swiper-button-prev">
-                <svg>
-                    <use xlink:href="{{ path }}/img/icons.svg#ico-02" />
-                </svg>
-            </div>
-            <div class="swiper-pagination"></div>
         </div>
 
         <div class="js-gallery gallery">
@@ -76,7 +78,7 @@
             <div id="popup" class="popup">
                 <h1>Hey, what's up.</h1>
                 <p> Hey, what's up.</p>
-                <!--<button class="popup__close js-popup-close" type="button"></button>-->
+                <!-- <button class="popup__close js-popup-close" type="button"></button>-->
             </div>
         </div>
     </div>
