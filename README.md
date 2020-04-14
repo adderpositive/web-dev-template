@@ -1,4 +1,4 @@
-# Vyvojářský stack
+# Dev stack
 Default stack for developing static HTML templates.
 
 Stack uses following modules:
