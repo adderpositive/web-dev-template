@@ -1,0 +1,22 @@
+@import '../1.setting/variables';
+
+.button-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.button {
+    position: relative;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 1.4rem;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+    padding: 15px 40px;
+    font-weight: 700;
+    background-color: $black-alfa;
+    color: $white-alfa;
+    font-family: $font-alfa;
+    box-shadow: 0px 10px 15px -16px #979797;
+}

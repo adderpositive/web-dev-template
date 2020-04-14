@@ -1,0 +1,94 @@
+@import '../1.setting/variables';
+
+.formatted {
+    margin: 50px auto;
+    max-width: 830px;
+
+    h2,
+    h3,
+    h4 {
+        font-weight: 700;
+    }
+
+    h2 {
+        margin-top: 50px;
+        font-size: 2.6rem;
+    }
+
+    h3 {
+        font-size: 2.2rem;
+        margin-top: 30px;
+    }
+
+    h4 {
+        font-size: 1.8rem;
+        margin-top: 15px;
+    }
+
+    p,
+    ol li,
+    ul li {
+        line-height: 1.2;
+        font-size: 1.6rem;
+    }
+
+    ol,
+    ul {
+        margin-top: 10px;
+    }
+
+    ul {
+
+        li {
+            position: relative;
+            padding-left: 18px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 6px;
+                left: 0;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: $black-alfa;
+            }
+        }
+    }
+
+    ol {
+        counter-reset: list-order;
+
+        li {
+            counter-increment: list-order;
+
+            &::before {
+                content: counter(list-order) '. ';
+            }
+        }
+    }
+
+    p {
+        margin-top: 20px;
+    }
+
+    img {
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    .iframe {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.5%;
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

@@ -5,6 +5,40 @@ const $ = window.$;
   window.svg4everybody()
 }());
 
+(function () {
+  const $header = $('.header')
+  const $menuOpener = $('.js-menu-opener')
+  const $menu = $('.js-menu')
+  const $window = $(window)
+  const windowHeight = $window.height()
+
+  $window.on('scroll', () => {
+    const scrollTop = window.pageYOffset
+
+    if (windowHeight / 2 < scrollTop) {
+      $header.addClass('is-active')
+      setTimeout(() => {
+        $header.addClass('is-animate-in is-animate')
+      }, 100)
+    } else if ($header.hasClass('is-active')) {
+      $header.addClass('is-animate-out')
+      setTimeout(() => {
+        $header.removeClass('is-active is-animate is-animate-in is-animate-out')
+      }, 400)
+    }
+  })
+
+  $menuOpener.on('click', () => {
+    if ($menuOpener.hasClass('is-active')) {
+      $menuOpener.removeClass('is-active')
+      $menu.removeClass('is-active')
+    } else {
+      $menuOpener.addClass('is-active')
+      $menu.addClass('is-active')
+    }
+  })
+}());
+
 // gallery
 (function () {
   const wrapClass = '.js-gallery'
@@ -38,7 +72,7 @@ const $ = window.$;
   const createLightbox = (wrapClass) => {
     const options = {
       selector: wrapClass,
-      closeButton: false,
+      // closeButton: false,
       skin: 'popup'
       /*
       onOpen: () => {

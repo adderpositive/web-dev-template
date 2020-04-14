@@ -129,10 +129,10 @@ Create production version in `/prod` directory.
 ## TODO plugins
 - [x] swiper
 - [x] inpage scroll
-- [ ] menu fix
+- [x] menu fix
 - [x] popup
 - [x] gallery
 - [ ] video snippet
 - [ ] lazy loading
 - [ ] forms, API request
-- [ ] add basic styles for some components
+- [x] add basic styles for some components

@@ -1,0 +1,29 @@
+@import '../1.setting/variables';
+
+.input-wrap {
+    display: flex;
+    margin-top: 10px;
+}
+
+.input {
+    flex: auto;
+    width: 100%;
+    border: 1px solid $black-alfa;
+    border-radius: 20px;
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    font-size: 1.4rem;
+    color: $black-alfa;
+
+    &::placeholder {
+        opacity: .5;
+    }
+}
+
+.label {
+    flex: none;
+    padding-top: 12px;
+    font-size: 1.4rem;
+    width: 120px;
+}

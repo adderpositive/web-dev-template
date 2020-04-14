@@ -1,3 +1,108 @@
-.header {
+@import '../1.setting/variables';
 
+.header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    padding: 25px 0;
+    background-color: $white-alfa;
+    box-shadow: 0 4px 20px -15px $black-alfa;
+
+    &.is-active {
+        position: fixed;
+        top: 0;
+        padding: 25px 0 20px;
+        background-color: $white-alfa;
+        transform: translateY(-100%);
+
+        @include mq(md) {
+            padding: 15px 0;
+        }
+
+        @include mq(sm) {
+            box-shadow: 0 4px 20px 0px $black-alfa;
+        }
+
+        .menu__link {
+            color: $black-alfa;
+
+            &:hover {
+                color: red;
+            }
+        }
+
+        .hamburger {
+
+            &::before {
+                background-color: $black-alfa;
+            }
+
+            &::after {
+                background-color: $black-alfa;
+            }
+
+            span {
+                background-color: $black-alfa;
+            }
+        }
+    }
+
+    &.is-animate {
+        transition: transform .4s;
+    }
+
+    &.is-animate-in {
+        transform: translateY(0px);
+    }
+
+    &.is-animate-out {
+        transform: translateY(-100%);
+    }
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    flex: none;
+    max-width: 100px;
+}
+
+.header__nav {
+    display: flex;
+    justify-content: flex-end;
+    flex: auto;
+    width: 100%;
+
+    @include mq(sm) {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        padding: 10px 20px;
+        width: 300px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0 10px 6px rgba(0, 0, 0, .2);
+    }
+
+    @include mq(xs) {
+        width: 100%;
+    }
+
+    &.is-active {
+        top: 100%;
+        right: 0;
+        left: auto;
+    }
+}
+
+.header__opener {
+    display: none;
+
+    @include mq(sm) {
+        display: block;
+    }
 }

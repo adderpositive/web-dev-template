@@ -3,21 +3,27 @@
 {% block page %}
     {% include "./html/components/header.twig"%}
 
-    <div class="inner">
-        <p>
-            This page is genedrated by Twig.js using the gulp-twig gulp plugin.
-        </p>
-        <ul>
-            {% for value in benefits %}
-                <li>{{ value }}</li>
-            {% endfor %}
-        </ul>
-        <img src="{{ path }}/img/image.jpg" alt="" />
-        <svg>
-            <use xlink:href="{{ path }}/img/icons.svg#ico-01" />
-        </svg>
+    <div class="page inner">
+        <div id="formatted" class="heading">Formatted content</div>
+        <div class="inner formatted">
+            <h2>Lorem ipsum dolor sit</h2>
+            <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>. Sed egestas, odio eu malesuada tincidunt, tortor orci gravida neque, id malesuada dolor ante sit amet massa. Morbi justo tortor, semper non libero id, volutpat pharetra dui. Donec rutrum, risus et consequat faucibus, odio nisl bibendum velit, vitae molestie sapien justo ac ex. <strong>Fusce accumsan sollicitudin condimentum.</strong> Cras consequat egestas vestibulum. Aenean posuere ligula nisi, egestas lobortis arcu egestas nec. Curabitur convallis ipsum velit, convallis consectetur eros sollicitudin id. Sed nec orci varius, lobortis massa et, posuere sem. <em>Sed quis eleifend odio.</em> Quisque elementum suscipit dignissim. Mauris semper nulla ac dictum cursus. Aenean sit amet dolor risus.</p>
+            <h3>Lorem ipsum dolor sit</h3>
+            <h4>Lorem ipsum dolor sit</h4>
+            <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>. Sed egestas, odio eu malesuada tincidunt, tortor orci gravida neque, id malesuada dolor ante sit amet massa. Morbi justo tortor, semper non libero id, volutpat pharetra dui. Donec rutrum, risus et consequat faucibus, odio nisl bibendum velit, vitae molestie sapien justo ac ex. <strong>Fusce accumsan sollicitudin condimentum.</strong> Cras consequat egestas vestibulum. Aenean posuere ligula nisi, egestas lobortis arcu egestas nec. Curabitur convallis ipsum velit, convallis consectetur eros sollicitudin id. Sed nec orci varius, lobortis massa et, posuere sem. <em>Sed quis eleifend odio.</em> Quisque elementum suscipit dignissim. Mauris semper nulla ac dictum cursus. Aenean sit amet dolor risus.</p>
+            <ul>
+                <li>bibendum velit</li>
+                <li>bibendum velit</li>
+            </ul>
+            <ol>
+                <li>bibendum velit</li>
+                <li>bibendum velit</li>
+            </ol>
+            <h3>Lorem ipsum dolor sit</h3>
+            <img src="{{ path }}/img/image.jpg" alt="" />
+        </div>
 
-        <!-- swiper example -->
+        <div id="slider" class="heading">Slider</div>
         <div class="swiper">
             <div class="swiper-wrap">
                 <div class="swiper-container">
@@ -50,6 +56,7 @@
             </div>
         </div>
 
+        <div id="gallery" class="heading">Gallery</div>
         <div class="js-gallery gallery">
             <div class="gallery-wrap">
                 <div class="gallery__item-wrap">
@@ -69,18 +76,37 @@
                 </div>
             </div>
             <div class="button-wrap">
-                <a class="button is-not-gallery-item" href="#">Button</a>
+                <a class="button is-not-gallery-item" href="#">Not gallery trigger</a>
             </div>
         </div>
 
+        <div id="popup" class="heading">Popup</div>
         <div class="popup-wrap">
-            <a class="button js-popup" href="#popup" >Open popup</a>
-            <div id="popup" class="popup">
+            <a class="button js-popup" href="#popup1" >Open popup</a>
+            <div id="popup1" class="popup">
                 <h1>Hey, what's up.</h1>
                 <p> Hey, what's up.</p>
                 <!-- <button class="popup__close js-popup-close" type="button"></button>-->
             </div>
         </div>
+
+        <div id="components" class="heading">Components</div>
+        <div class="button-wrap">
+            <button class="button" type="submit">Button</button>
+        </div>
+        <div class="button-wrap">
+            <button class="button" type="button">Button</button>
+        </div>
+        <div class="button-wrap">
+            <a class="button" href="#">Button</a>
+        </div>
+
+        <form>
+            <div class="input-wrap">
+                <label class="label">Input:</label>
+                <input class="input" type="text" />
+            </div>
+        </form>
     </div>
 
     {% include "./html/components/footer.twig"%}

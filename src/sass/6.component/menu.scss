@@ -1,5 +1,13 @@
-.menu {
+@import '../1.setting/variables';
 
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    @include mq(sm) {
+        flex-direction: column;
+    }
 }
 
 .menu__item {
@@ -7,5 +15,14 @@
 }
 
 .menu__link {
+    display: block;
+    font-size: 1.3rem;
+    padding: 0 18px;
+    color: $black-alfa;
+    transition: color .2s;
 
+    &.is-active,
+    &:hover {
+        color: red;
+    }
 }
