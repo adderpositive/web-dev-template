@@ -130,7 +130,7 @@ Create production version in `/prod` directory.
 - [x] swiper
 - [x] inpage scroll
 - [ ] menu fix
-- [ ] popup
+- [x] popup
 - [x] gallery
 - [ ] video snippet
 - [ ] lazy loading

@@ -1,0 +1,81 @@
+@import '../1.setting/variables';
+
+.glightbox-popup {
+
+    .gslide-inline {
+        width: 100%;
+        padding: 0;
+        background: $transparent;
+    }
+
+    .gclose {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: $white-alfa;
+        width: 44px;
+        padding: 0 15px;
+        transition: background-color .2s;
+
+        &:hover {
+            background-color: darken($white-alfa, 15%);
+        }
+    }
+}
+
+
+
+.popup {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    background-color: $white-alfa;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+
+    &.ginlined-content {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+}
+
+/*
+.popup__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: $black-alfa;
+    transition: background-color .2s;
+
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        margin-left: -10px;
+        height: 1px;
+        transform: 50% 50%;
+        background-color: $white-alfa;
+    }
+
+    &::after {
+        transform: rotate(-45deg);
+    }
+
+    &::before {
+        transform: rotate(45deg);
+    }
+
+    &:hover {
+        background-color: lighten($black-alfa, 20%);
+    }
+}
+*/
