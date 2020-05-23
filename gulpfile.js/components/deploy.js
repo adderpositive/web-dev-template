@@ -3,18 +3,29 @@ const gutil = require('gulp-util');
 const ftp = require('vinyl-ftp');
 
 const deploy = (config) => {
-    const srcTemp = config.dirSource;
+    const data = config[config.enviroment];
+    const {
+        host,
+        user,
+        password,
+        parallel,
+        hostingDirectory
+    } = data.hosting
+    const dir = data.dir;
+
     const conn = ftp.create({
-        host: config[config.enviroment].host,
-        user: config[config.enviroment].user,
-        password: config[config.enviroment].password,
-        parallel: config[config.enviroment].parallel,
+        host: host,
+        user: user,
+        password: password,
+        parallel: parallel,
         log: gutil.log
     });
 
-    return src(`${ srcTemp }/**`, { buffer: false } )
-        .pipe(conn.newer(config[config.enviroment].hostingDirectory))
-        .pipe(conn.dest(config[config.enviroment].hostingDirectory));
+    console.log(conn, `${ dir }/**`)
+
+    return src(`${ dir }/**`, { buffer: false } )
+        .pipe(conn.newer(hostingDirectory))
+        .pipe(conn.dest(hostingDirectory));
 };
 
 exports.deploy = deploy;
