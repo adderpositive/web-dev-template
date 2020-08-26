@@ -7,7 +7,7 @@
     "ogImage": "https://example.com/img/hp.jpg",
     "logoWithPath": "https://example.com/img/logo.png",
     "email": "info@example.com",
-    "path": ".",
+    "pathToAssets": ".",
     "dirSource": "./src",
     "data": {
 
